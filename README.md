@@ -1,4 +1,4 @@
-🗳️ Real-Time Poll Rooms
+ Real-Time Poll Rooms =>
 
 A full-stack web application that allows users to create polls, share them via a link, and collect votes with real-time result updates.
 The project focuses on correctness, fairness, persistence, and clean user experience.
@@ -6,203 +6,129 @@ The project focuses on correctness, fairness, persistence, and clean user experi
 🔗 Live Demo:  https://poll-rooms-two.vercel.app/
 
 📦 Tech Stack
-Frontend
+Frontend:
 
 React (Create React App)
-
 Socket.IO Client
-
 Google OAuth (Google Identity Services)
-
 CSS (custom, no UI framework)
 
-Backend
+Backend:
 
 Node.js
-
 Express.js
-
 Socket.IO
-
 MongoDB Atlas
-
 Mongoose
-
 JWT (JSON Web Tokens)
 
-Deployment
+Deployment =>
 
 Frontend: Vercel
-
 Backend: Render
-
 Database: MongoDB Atlas
 
 ✨ Features
-1️⃣ Poll Creation
+1️⃣ Poll Creation:
 
-Create a poll with a question and 2 or more options
+1.Create a poll with a question and 2 or more options
+2.Unlimited number of options
+3.Duplicate options (case-insensitive) are blocked
+4.Optional poll expiry time
+5.Generates a shareable poll link
 
-Unlimited number of options
+2️⃣ Join by Link:
 
-Duplicate options (case-insensitive) are blocked
+1.Anyone with the link can view the poll
+2.Voting requires Google Sign-In
+3.Single-choice voting only
 
-Optional poll expiry time
+3️⃣ Real-Time Results:
 
-Generates a shareable poll link
+1.Votes update instantly for all users viewing the poll
+2.No page refresh required
+3.Implemented using Socket.IO
 
-2️⃣ Join by Link
+4️⃣ Persistence:
 
-Anyone with the link can view the poll
+1.Polls and votes are stored in MongoDB
+2.Refreshing the page does not lose data
+3.Share links remain valid over time
 
-Voting requires Google Sign-In
+5️⃣ User Experience:
 
-Single-choice voting only
+1.Clean, minimal, and responsive UI
+2.Skeleton loading state while data loads
+3.Toast notifications instead of alerts
+4.Animated vote feedback
+5.Percentage bars with labels
+6.Copy-link button with confirmation feedback
 
-3️⃣ Real-Time Results
-
-Votes update instantly for all users viewing the poll
-
-No page refresh required
-
-Implemented using Socket.IO
-
-4️⃣ Persistence
-
-Polls and votes are stored in MongoDB
-
-Refreshing the page does not lose data
-
-Share links remain valid over time
-
-5️⃣ User Experience
-
-Clean, minimal, and responsive UI
-
-Skeleton loading state while data loads
-
-Toast notifications instead of alerts
-
-Animated vote feedback
-
-Percentage bars with labels
-
-Copy-link button with confirmation feedback
-
-🔐 Fairness & Anti-Abuse Mechanisms
+🔐 Fairness & Anti-Abuse Mechanisms:
 
 The app uses a two-phase verification model to reduce abusive or duplicate voting.
 
 ✅ Phase 1 (Hard Enforcement): Google OAuth
 
-Users must sign in with Google before voting
-
-Each vote is tied to a unique Google account (googleId)
-
-The backend strictly enforces:
-
-One vote per Google account per poll
+1.Users must sign in with Google before voting
+2.Each vote is tied to a unique Google account (googleId)
+3.The backend strictly enforces:
+4.One vote per Google account per poll
 
 Prevents:
 
-Repeated voting by the same user
+1.Repeated voting by the same user
+2.Page refresh or multi-device abuse
 
-Page refresh or multi-device abuse
-
-🛡️ Phase 2 (Soft Verification): Network & Context Signals
+✅ Phase 2 (Soft Verification): Network & Context Signals
 
 The backend records metadata such as:
 
-IP address
-
-Vote timestamp
-
-These signals are logged, not hard-blocked
+1.IP address
+2.Vote timestamp
+3.These signals are logged, not hard-blocked
 
 Purpose:
 
-Monitoring
-
-Auditing
-
-Abuse analysis
+1.Monitoring
+2.Auditing
+3.Abuse analysis
 
 Reason for soft enforcement:
 
-Cloud platforms use shared proxy IPs
+1.Cloud platforms use shared proxy IPs
+2.Hard IP blocking causes false positives in production
+3.Design choice: Identity-based enforcement (Google OAuth) is reliable in cloud environments, while IP-based signals are used only for monitoring.
 
-Hard IP blocking causes false positives in production
+⚠️ Edge Cases Handled:
 
-Design choice: Identity-based enforcement (Google OAuth) is reliable in cloud environments, while IP-based signals are used only for monitoring.
+1Duplicate poll options (case-insensitive)
+2.Empty or whitespace-only options
+3.Concurrent votes (handled via atomic MongoDB updates)
+4.Real-time race conditions
+5.Poll expiry (voting disabled after expiry)
+6.Page refresh during voting
+7.Multiple users voting simultaneously
 
-⚠️ Edge Cases Handled
+Known Limitations:
 
-Duplicate poll options (case-insensitive)
+1.Users can vote multiple times using different Google accounts
+2.IP-based blocking is not enforced due to cloud proxy limitations
 
-Empty or whitespace-only options
+Possible Improvements:
 
-Concurrent votes (handled via atomic MongoDB updates)
+1.Admin / creator dashboard
+2.Vote audit & analytics panel
+3.Rate-limiting based on time windows
+4.CAPTCHA or bot-detection layer
+5.Poll option images
+6.Poll editing & manual closing
+7.Email-based authentication alternative
 
-Real-time race conditions
+✅Design:
 
-Poll expiry (voting disabled after expiry)
-
-Page refresh during voting
-
-Multiple users voting simultaneously
-
-Dark-mode contrast issues
-
-🚫 Known Limitations
-
-Users can vote multiple times using different Google accounts
-
-IP-based blocking is not enforced due to cloud proxy limitations
-
-🚀 Possible Improvements
-
-Admin / creator dashboard
-
-Vote audit & analytics panel
-
-Rate-limiting based on time windows
-
-CAPTCHA or bot-detection layer
-
-Poll option images
-
-Poll editing & manual closing
-
-Email-based authentication alternative
-
-🛠️ Local Development
-Backend
-cd Backend
-npm install
-npm start
-Frontend
-cd frontend
-npm install
-npm start
-📁 Project Structure
-Poll-Assignment/
-├── Backend/
-│   ├── routes/
-│   ├── models/
-│   ├── index.js
-│   └── db.js
-└── frontend/
-    ├── src/
-    ├── public/
-    └── package.json
-🧠 Design Philosophy
-
-Keep the system simple and robust
-
-Prefer correctness over complexity
-
-Avoid fragile client-side enforcement
-
-Design fairness mechanisms that work in real deployments
-
-Clean UX without over-engineering
+1.Keep the system simple and robust
+2.Prefer correctness over complexity
+3.Avoid fragile client-side enforcement
+4.Design fairness mechanisms that work in real deployments
+5.Clean UX without over-engineering
