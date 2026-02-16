@@ -7,7 +7,7 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <GoogleOAuthProvider clientId="739060257154-uisofrcm8h1r6q0hm72s6ttbp2r7qas3.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
     <App />
   </GoogleOAuthProvider>
 );
