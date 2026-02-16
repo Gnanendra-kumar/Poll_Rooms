@@ -9,7 +9,7 @@ export default function Login({ onLogin }) {
     <GoogleLogin
       onSuccess={async credentialResponse => {
         const res = await axios.post(
-          "http://localhost:5000/api/auth/google",
+          "https://poll-rooms-jyx9.onrender.com/api/auth/google",
           { token: credentialResponse.credential }
         );
 
