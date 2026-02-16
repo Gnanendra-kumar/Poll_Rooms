@@ -42,7 +42,7 @@ io.on("connection", socket => {
 
       // 2️⃣ Check duplicate vote (Google + IP)
       const alreadyVoted = poll.voters.some(
-        v => v.googleId === decoded.googleId || v.ip === ip
+        v => v.googleId === decoded.googleId
       );
       if (alreadyVoted) return;
 
