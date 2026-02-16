@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 import Login from "../components/Login";
 import "../App.css";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://poll-rooms-jyx9.onrender.com");
 
 export default function Poll() {
   const { id } = useParams();
