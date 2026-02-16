@@ -1,0 +1,284 @@
+/* =====================
+   THEME VARIABLES
+===================== */
+:root {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --danger: #dc2626;
+  --border: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* 🌙 DARK MODE */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --card: #020617;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --primary: #3b82f6;
+    --border: #1e293b;
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+} */
+
+/* =====================
+   GLOBAL
+===================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =====================
+   LAYOUT
+===================== */
+.container {
+  max-width: 640px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* =====================
+   CARD (ANIMATED)
+===================== */
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 12px 28px var(--shadow);
+  margin-bottom: 26px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px var(--shadow);
+}
+
+/* =====================
+   HEADINGS
+===================== */
+h1 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+h3 {
+  margin: 20px 0 12px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+/* =====================
+   INPUTS
+===================== */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 8px 0;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* =====================
+   OPTIONS
+===================== */
+.option-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* =====================
+   BUTTONS (ANIMATED)
+===================== */
+button {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.primary {
+  background: var(--primary);
+  color: white;
+  padding: 14px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.primary:hover {
+  background: #1d4ed8;
+}
+
+.secondary {
+  background: var(--border);
+  color: var(--text);
+  padding: 12px;
+  width: 100%;
+}
+
+.danger {
+  background: var(--danger);
+  color: white;
+  padding: 10px 14px;
+}
+
+/* =====================
+   GOOGLE LOGIN
+===================== */
+.google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* =====================
+   VOTE BUTTONS
+===================== */
+.vote-btn {
+  width: 100%;
+  padding: 16px;
+  margin: 10px 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+}
+
+.vote-btn:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.vote-btn:disabled {
+  opacity: 0.6;
+}
+
+/* =====================
+   RESULTS DASHBOARD
+===================== */
+.dashboard {
+  margin-top: 32px;
+}
+
+.result-row {
+  margin-bottom: 14px;
+}
+
+.bar {
+  height: 14px;
+  background: var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+}
+
+.fill {
+  height: 100%;
+  background: var(--primary);
+  width: 0;
+  animation: grow 0.6s ease forwards;
+}
+
+/* 📊 Percentage label inside bar */
+.percent {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: white;
+  font-weight: 600;
+}
+
+/* =====================
+   EXPIRED
+===================== */
+.expired {
+  text-align: center;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+/* =====================
+   SKELETON LOADER
+===================== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    rgba(255,255,255,0.15) 37%,
+    var(--border) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 10px;
+}
+
+.skeleton-text {
+  height: 18px;
+  margin-bottom: 12px;
+}
+
+.skeleton-btn {
+  height: 48px;
+  margin: 10px 0;
+}
+
+/* =====================
+   ANIMATIONS
+===================== */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes grow {
+  from { width: 0; }
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 600px) {
+  .container {
+    margin: 30px 12px;
+  }
+}
+
+.Googles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-top: 21%;
+}
