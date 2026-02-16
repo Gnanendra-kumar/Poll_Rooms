@@ -51,7 +51,6 @@ io.on("connection", socket => {
         {
           _id: pollId,
           "voters.googleId": { $ne: decoded.googleId },
-          "voters.ip": { $ne: ip }
         },
         {
           $inc: { [`options.${optionIndex}.votes`]: 1 },
